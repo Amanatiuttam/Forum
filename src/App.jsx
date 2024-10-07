@@ -2,20 +2,41 @@
 import { FaShareAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 
-import {RiHome6Line} from "react-icons/ri";
 import Nav from "./nav";
 import plane from "./post.png"
+import { useState } from "react";
 
 function App() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const handleMouseEnter = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDropdownOpen(false);
+  };
 	return (
     <>
       <Nav />
-      <div className="grid grid-cols-[250px_1fr_330px] h-screen">
+      <div className="grid grid-cols-[220px_1fr_300px] h-screen">
         {/* Left Sidebar */}
-        <aside className="bg-gray-100 pt-16 border-r border-gray-300">
-          <ul className=" flex flex-col items-start gap-9 text-xl ml-8 font-semibold">
+        <aside className="bg-gray-100 pt-4 border-r border-gray-300">
+          <ul className=" flex flex-col items-start gap-9 text-lg ml-8 font-semibold">
             <li className=" items-center flex flex-row gap-4">
-              <RiHome6Line size={"22px"} className="text-black" />
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M20.29 7.00048L14.73 2.89048C13.1036 1.70317 10.8964 1.70317 9.27 2.89048L3.72 7.00048C2.64544 7.77462 2.0061 9.01612 2 10.3405V17.7705C2.06002 20.1637 4.04665 22.0564 6.44 22.0005H17.56C19.9534 22.0564 21.94 20.1637 22 17.7705V10.3305C21.9914 9.01185 21.3567 7.77576 20.29 7.00048ZM20.5 17.7705C20.4404 19.3354 19.1251 20.5568 17.56 20.5005H6.44C4.87698 20.5512 3.56502 19.333 3.5 17.7705V10.3405C3.50534 9.4904 3.91817 8.69448 4.61 8.20048L10.16 4.10048C11.2561 3.30006 12.7439 3.30006 13.84 4.10048L19.39 8.21048C20.0812 8.6959 20.4948 9.48583 20.5 10.3305V17.7705ZM7.5 15.7505H16.5C16.9142 15.7505 17.25 16.0863 17.25 16.5005C17.25 16.9147 16.9142 17.2505 16.5 17.2505H7.5C7.08579 17.2505 6.75 16.9147 6.75 16.5005C6.75 16.0863 7.08579 15.7505 7.5 15.7505Z"
+                  fill="black"
+                />
+              </svg>
               Home
             </li>
             <li className=" flex flex-row gap-4">
@@ -94,7 +115,26 @@ function App() {
               </svg>
               Explore
             </li>
-            <li>+ Create Group</li>
+            <li>
+              <div
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+                className="cursor-pointer "
+              >
+                + Create a Group
+              </div>
+              {isDropdownOpen && (
+                <ul
+                  className=" left-7 w-40   rounded shadow-sm text-lg "
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <li className="py-2 px-4 hover:bg-slate-200">Sub Item 1</li>
+                  <li className="py-2 px-4  hover:bg-slate-200">Sub Item 2</li>
+                  <li className="py-2 px-4  hover:bg-slate-200">Sub Item 3</li>
+                </ul>
+              )}
+            </li>
           </ul>
         </aside>
         <main className="">
@@ -129,8 +169,8 @@ function App() {
             </ul>
           </nav>
           {/* Main Content Section */}
-          <section className="flex flex-col items-center justify-center px-4">
-            <div className="h-72"></div>
+          <section className="flex  flex-col items-center justify-center px-4">
+            <div className="h-40"></div>
             <div className="flex  flex-row ">
               <div className="pl-8">
                 <p className="font-semibold text-2xl"># Aviation</p>
@@ -142,7 +182,7 @@ function App() {
                 <div className="overflow-hidden">
                   <h2
                     id="mern"
-                    className="text-black text-lg md:text-4xl my-2 font-bold"
+                    className="text-black text-lg md:text-3xl my-2 font-bold"
                   >
                     Purpose-Built to Bring Mass to the Fight
                   </h2>
@@ -154,8 +194,7 @@ function App() {
                       Vehicles (AAVs) purpose-built for hyper-scale production
                       and mass employment. Combining advanced software with a
                       simplified design, Barracuda delivers a highly
-                      intelligent, low-cost,
-                      flexible mission system.{" "}
+                      intelligent, low-cost, flexible mission system.{" "}
                     </p>
                   </div>
 
